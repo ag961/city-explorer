@@ -37,8 +37,26 @@
   }
 }
 
-ul {
-  width: fit-content;
-  padding: 1rem;    
+
+
+h1 {
+  text-align: center;
 }
 
+input {
+  width: 50%;
+}
+
+ul {
+  width: fit-content;
+  padding: 1.1rem;
+  margin: auto;    
+}
+
+button {
+  margin: 10px;
+}
+
+img {
+  margin: auto;
+}

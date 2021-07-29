@@ -29,7 +29,10 @@ This lab introcudes us to sourcing data from APIs and to error handling. It will
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
-7/29/2021 1.06 - Feature 1: React repository is set up with API key and Netlify site is deployed.
+7/29/2021 1.06 am - Feature 1: React repository is set up with API key and Netlify site is deployed.
+7/29/2021 4.30 am - Feature 2 complete: Displaying location, latitude and longitute.
+7/29/2021 7.30 am - Feature 3 complete: Displaying map image. CSS added.
+
 
 
 ## Credit and Collaborations
@@ -55,6 +58,18 @@ Estimate of time needed to complete: 2 hrs
 
 Start time: 1.10 am
 
-Finish time: 
+Finish time: 04.30
 
-Actual time needed to complete: 
+Actual time needed to complete: 3.20 min
+
+--------
+
+Name of feature: 3. Map: As a user, I want to see a map of the city so that I can see the layout of the area I want to explore.
+
+Estimate of time needed to complete: 2 hrs
+
+Start time: 06.00
+
+Finish time: 07.30
+
+Actual time needed to complete:1.5 hrs 

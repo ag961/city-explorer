@@ -4,6 +4,8 @@ import axios from 'axios';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
+import Container from 'react-bootstrap/Container';
 
 
 class App extends React.Component {
@@ -16,6 +18,8 @@ class App extends React.Component {
       lon: 0,
       name: '',
       renderLatLon: false,
+      image: '',
+      renderImage: false,
     }
   };
 
@@ -33,24 +37,29 @@ class App extends React.Component {
       lon: cityResults.data[0].lon,
       name: cityResults.data[0].display_name,
       renderLatLon: true,
+      renderImage: true,
     })
   };
-
 
   render() {
     return (
       <>
         <h1>City Explorer</h1>
-        <Form onSubmit={this.getCityInfo}>
-          <Form.Control onChange={this.handleChange}></Form.Control>
+        <Container>
 
-          <Button variant="primary" type="submit">Explore!</Button>
-        </Form>
-        <ListGroup as="ul">
-          {this.state.renderLatLon ? <ListGroup.Item as="li" active>{this.state.name}</ListGroup.Item> : ''}
-          {this.state.renderLatLon ? <ListGroup.Item as="li">Latitude: {this.state.lat}</ListGroup.Item> : ''}
-          {this.state.renderLatLon ? <ListGroup.Item as="li">Longitute: {this.state.lon}</ListGroup.Item> : ''}
-        </ListGroup>
+          <Form onSubmit={this.getCityInfo}>
+            <Form.Group>
+              <Form.Control size="md" className="input" onChange={this.handleChange}></Form.Control>
+            </Form.Group>
+            <Button variant="primary" type="submit">Explore!</Button>
+          </Form>
+          <ListGroup as="ul">
+            {this.state.renderLatLon ? <ListGroup.Item as="li" active>{this.state.name}</ListGroup.Item> : ''}
+            {this.state.renderLatLon ? <ListGroup.Item as="li">Latitude: {this.state.lat}</ListGroup.Item> : ''}
+            {this.state.renderLatLon ? <ListGroup.Item as="li">Longitute: {this.state.lon}</ListGroup.Item> : ''}
+            {this.state.renderLatLon ? <Image alt='city' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12`} rounded /> : ''}
+          </ListGroup>
+        </Container>
       </>
     )
   }
