@@ -15,7 +15,11 @@ This lab introcudes us to sourcing data from APIs and to error handling. It will
 
 - Create form that takes in user input in the for of a location
 
-- Displays the lat and lon and the map of the location
+- Request API, display the lat and lon and the map of the location
+
+- Compose URL base onlat and lon to request map API, and display image
+
+- code try/catch to handle errors
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
@@ -32,11 +36,14 @@ This lab introcudes us to sourcing data from APIs and to error handling. It will
 7/29/2021 1.06 am - Feature 1: React repository is set up with API key and Netlify site is deployed.
 7/29/2021 4.30 am - Feature 2 complete: Displaying location, latitude and longitute.
 7/29/2021 7.30 am - Feature 3 complete: Displaying map image. CSS added.
+7/29/2021 8.50 am - Feature 4 complete: ability to show error types and explanation
 
 
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+Classmates: Clarissa, David, Willem, Alex
+Staff: Ryan Gallaway
 
 ---------------
 
