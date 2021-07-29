@@ -73,3 +73,15 @@ Start time: 06.00
 Finish time: 07.30
 
 Actual time needed to complete:1.5 hrs 
+
+---------
+
+Name of feature: 4. Errors: As a user, I want clear messages if something goes wrong so I know if I need to make any changes or try again in a different manner.
+
+Estimate of time needed to complete: 1 hrs
+
+Start time: 07.30
+
+Finish time: 08.50
+
+Actual time needed to complete: 1.20 min 

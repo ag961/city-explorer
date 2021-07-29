@@ -18,8 +18,8 @@ class App extends React.Component {
       lon: 0,
       name: '',
       renderLatLon: false,
-      image: '',
-      renderImage: false,
+      displayError: false,
+      errorMessage: '',
     }
   };
 
@@ -29,37 +29,46 @@ class App extends React.Component {
 
   getCityInfo = async (e) => {
     e.preventDefault();
-
-    let cityResults = await axios.get(`https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.city}&format=json`);
-    console.log(cityResults);
-    this.setState({
-      lat: cityResults.data[0].lat,
-      lon: cityResults.data[0].lon,
-      name: cityResults.data[0].display_name,
-      renderLatLon: true,
-      renderImage: true,
-    })
+    try {
+      let cityResults = await axios.get(`https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.city}&format=json`);
+      console.log(cityResults);
+      this.setState({
+        lat: cityResults.data[0].lat,
+        lon: cityResults.data[0].lon,
+        name: cityResults.data[0].display_name,
+        renderLatLon: true,
+        displayError: false,
+        
+      })
+    } catch (error) {
+      this.setState({
+        renderLatLon: false,
+        displayError: true,
+        errorMessage: `Error: ${error.response.status}, ${error.response.data.error}` 
+      })
+    }
   };
 
   render() {
     return (
       <>
         <h1>City Explorer</h1>
-        <Container>
-
+        <Container className="cont">
           <Form onSubmit={this.getCityInfo}>
             <Form.Group>
               <Form.Control size="md" className="input" onChange={this.handleChange}></Form.Control>
             </Form.Group>
             <Button variant="primary" type="submit">Explore!</Button>
           </Form>
-          <ListGroup as="ul">
-            {this.state.renderLatLon ? <ListGroup.Item as="li" active>{this.state.name}</ListGroup.Item> : ''}
-            {this.state.renderLatLon ? <ListGroup.Item as="li">Latitude: {this.state.lat}</ListGroup.Item> : ''}
-            {this.state.renderLatLon ? <ListGroup.Item as="li">Longitute: {this.state.lon}</ListGroup.Item> : ''}
-            {this.state.renderLatLon ? <Image alt='city' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12`} rounded /> : ''}
-          </ListGroup>
         </Container>
+        {this.state.renderLatLon ?
+          <ListGroup as="ul">
+            <ListGroup.Item as="li" active>{this.state.name}</ListGroup.Item>
+            <ListGroup.Item as="li">Latitude: {this.state.lat}</ListGroup.Item>
+            <ListGroup.Item as="li">Longitute: {this.state.lon}</ListGroup.Item>
+            <Image alt='city' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12`} rounded />
+          </ListGroup> : ''}
+        {this.state.displayError ? <h3>{this.state.errorMessage}</h3> : ''}
       </>
     )
   }
