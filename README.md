@@ -1,4 +1,4 @@
-# City Explorer App
+# City Explorer App (Lab 07)
 
 **Author**: Ayrat Gimranov
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)

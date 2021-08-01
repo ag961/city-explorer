@@ -37,8 +37,7 @@ class App extends React.Component {
         lon: cityResults.data[0].lon,
         name: cityResults.data[0].display_name,
         renderLatLon: true,
-        displayError: false,
-        
+        displayError: false,        
       })
     } catch (error) {
       this.setState({
@@ -46,8 +45,14 @@ class App extends React.Component {
         displayError: true,
         errorMessage: `Error: ${error.response.status}, ${error.response.data.error}` 
       })
-    }
+    }   
+    this.getWeatherinfo();
   };
+
+  getWeatherinfo = async (e) => {
+    let weatherResults = await axios.get(`https://localhost/weather?lat=${this.state.lat}&lon=${this.state.lon}&searchQuery=${this.state.name}`);
+    console.log(weatherResults.data);
+  }
 
   render() {
     return (
