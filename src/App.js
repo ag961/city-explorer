@@ -8,6 +8,7 @@ import Image from 'react-bootstrap/Image';
 import Container from 'react-bootstrap/Container';
 import CardColumns from 'react-bootstrap/CardColumns';
 import Weather from './Weather';
+import Movies from './Movies';
 
 
 class App extends React.Component {
@@ -26,6 +27,9 @@ class App extends React.Component {
       displayWeather: false,
       displayWeatherError: false,
       weatherErrMessage: '',
+      movieData: [],
+      displayMovies: false,
+      movieErrMessage: '',
     }
   };
 
@@ -53,10 +57,11 @@ class App extends React.Component {
         errorMessage: `Error: ${error.response.status}, ${error.response.data.error}`
       })
     }
-    this.getWeatherinfo();
+    this.getWeatherInfo();
+    this.getMovieInfo();
   };
 
-  getWeatherinfo = async (e) => {
+  getWeatherInfo = async (e) => {
     try {
       let weatherResults = await axios.get(`http://localhost:3001/weather?lat=${this.state.lat}&lon=${this.state.lon}&searchQuery=${this.state.city}`);
       this.setState({
@@ -69,14 +74,32 @@ class App extends React.Component {
         displayWeather: false,
         displayWeatherError: true,
         weatherErrMessage: `Error: ${error.response.status}, ${error.response.data}`,
-
       })
       console.log(error.response);
     }
   }
 
+  getMovieInfo = async (e) => {
+    try {
+      let movieResults = await axios.get(`http://localhost:3001/movies?searchQuery=${this.state.city}`);
+      this.setState({
+        movieData: movieResults.data,
+        displayMovies: true,
+        displayMovieError: false,
+      });
+
+      console.log(this.state.movieData);
+    } catch (error) {
+      this.setState({
+        displayMovies: false,
+        displayMovieError: true,
+        movieErrMessage: `Error: ${error.response.status}, ${error.response.data}`
+      })
+    }
+  }
+
   render() {
-    
+
     let weatherArrToRender = this.state.weatherData.map((weatherByDate, index) => (
       <Weather
         key={index}
@@ -84,6 +107,16 @@ class App extends React.Component {
         date={weatherByDate.date}
       />)
     )
+
+    let movieArrToRender = this.state.movieData.map((movie, index) => (
+      <Movies
+        key={index}
+        title={movie.title}
+        image_url={movie.image_url}
+        overview={movie.overview}
+        releasedOn={movie.releasedOn}
+      />
+    ))
 
     return (
       <>
@@ -110,6 +143,13 @@ class App extends React.Component {
             <ListGroup.Item as="li"><Image alt='city' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12`} rounded /></ListGroup.Item>
           </ListGroup> : ''}
         {this.state.displayError ? <h3>{this.state.errorMessage}</h3> : ''}
+        {this.state.displayMovies ?
+          <Container>
+            <CardColumns>
+              {movieArrToRender}
+            </CardColumns>
+          </Container> : <h3>{this.state.movieErrMessage}</h3>
+        }
       </>
     )
   }
