@@ -1,9 +1,13 @@
+body {
+  background-color: grey;
+}
+
 .App {
   text-align: center;
 }
 
 .cont {
-  background-image:linear-gradient(rgb(160, 142, 142), white)
+  background-image:linear-gradient(rgb(160, 142, 142), rgb(44, 108, 204))
 }
 
 h1 {
