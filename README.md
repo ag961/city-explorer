@@ -5,7 +5,7 @@
 
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
-This lab teaches us to build our first back-end server. The app is pulling weather data from our locally built back-end and displaying the result by dates, as well as handling errors.
+In this lab we replace weather placeholder with data from weather API, that is requested by our back-end server, and then processed and sent back to front-end. We also add info about movies for the city searched.
 
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
@@ -29,7 +29,7 @@ This lab teaches us to build our first back-end server. The app is pulling weath
 - Libraries - React, React-bootstrap, Axios,
 - Tools - GitHub, Netlify, Trello, Creatly  
 
-![UML](./src/img/lab07-uml.png)
+![UML](./src/img/lab08-uml.png)
 
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
@@ -49,20 +49,19 @@ Staff: Ryan Gallaway
 
 ---------------
 
-Name of feature: 1. Set up your React repository & API keys.
+Name of feature: 1. 
 
-Estimate of time needed to complete: 2 hrs
+Estimate of time needed to complete: 
 
-Start time: 1.30 am
+Start time: 
 
-Finish time: 6 am
+Finish time: 
 
-Actual time needed to complete: 4.5 hours
+Actual time needed to complete: 
 
 -------
 
-Name of feature: 2. Weather (placeholder): As a user of City Explorer, I want to see weather info for the city I searched, so that I know how to pack for an upcoming trip.
-
+Name of feature: 2. 
 Estimate of time needed to complete: 3 hrs
 
 Start time: 9.30 pm
@@ -73,12 +72,12 @@ Actual time needed to complete: 5 hours
 
 --------
 
-Name of feature: Errors (revisited): As a user, I want clear messages if something goes wrong so I know if I need to make any changes or try again in a different manner.
+Name of feature: 
 
-Estimate of time needed to complete: 2 hrs
+Estimate of time needed to complete: 
 
-Start time: 2.30 am
+Start time: 
 
-Finish time: 4 am
+Finish time: 
 
-Actual time needed to complete: 1.5 hrs
+Actual time needed to complete: 
