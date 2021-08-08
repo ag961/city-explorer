@@ -38,7 +38,7 @@ In this lab we modularize back-end and front-end, refactoring our codebase.
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 8/8/2021 3.30 am - Feature 1: Modularized back-end codebase.
 
-
+8/8/2021 4.45 am - Feature 2: Componentized components of front-end.
 
 
 
@@ -65,8 +65,8 @@ Name of feature 2. Refactor: Componentize the front-end codebase.
 
 Estimate of time needed to complete: 4 hrs
 
-Start time: 
+Start time: 3.30 am
 
-Finish time: 
+Finish time: 4.45 am
 
-Actual time needed to complete: 
+Actual time needed to complete: 1.15 min

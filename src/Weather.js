@@ -1,17 +1,21 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
+import CardColumns from 'react-bootstrap/CardColumns';
+import WeatherDay from './WeatherDay';
 
 class Weather extends React.Component {
 
   render() {
+    let weatherArrToRender = this.props.weatherData.map((weatherByDate, index) => (
+      <WeatherDay
+        key={index}
+        description={weatherByDate.description}
+        date={weatherByDate.date}
+      />)
+    )
     return (
-      <Card border="primary" className="text-center">
-        <Card.Body>
-          <Card.Header>{this.props.date}</Card.Header>
-          <Card.Text>{this.props.description}</Card.Text>
-        </Card.Body>
-      </Card>
-
+      <CardColumns>
+        {weatherArrToRender}
+      </CardColumns>
     )
   }
 
