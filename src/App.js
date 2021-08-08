@@ -47,18 +47,19 @@ class App extends React.Component {
         lon: cityResults.data[0].lon,
         name: cityResults.data[0].display_name,
         renderLatLon: true,
-        displayError: false,
+        displayError: false,        
       })
+      this.getMovieInfo();
     } catch (error) {
       this.setState({
         renderLatLon: false,
         displayError: true,
         displayWeather: false,
+        displayMovies: false,        
         errorMessage: `Error: ${error.response.status}, ${error.response.data.error}`
       })
     }
     this.getWeatherInfo();
-    this.getMovieInfo();
   };
 
   getWeatherInfo = async (e) => {
@@ -82,18 +83,20 @@ class App extends React.Component {
   getMovieInfo = async (e) => {
     try {
       let movieResults = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/movies?searchQuery=${this.state.city}`);
+      console.log(movieResults);
       this.setState({
         movieData: movieResults.data,
         displayMovies: true,
         displayMovieError: false,
       });
 
-      console.log(this.state.movieData);
+      console.log(this.state.movieResults);
     } catch (error) {
+      console.log(error);
       this.setState({
         displayMovies: false,
         displayMovieError: true,
-        movieErrMessage: `Error: ${error.response.status}, ${error.response.data}`
+        movieErrMessage: `${error}`
       })
     }
   }
@@ -145,11 +148,14 @@ class App extends React.Component {
         {this.state.displayError ? <h3>{this.state.errorMessage}</h3> : ''}
         {this.state.displayMovies ?
           <Container>
+          {movieArrToRender.length > 0 ? 
             <CardColumns>
               {movieArrToRender}
             </CardColumns>
-          </Container> : <h3>{this.state.movieErrMessage}</h3>
+          : <h3>No movies were found matching your search input</h3>}
+          </Container> : ''
         }
+        {this.state.displayMovieError ? <h3>{this.state.movieErrMessage}</h3> : ''}
       </>
     )
   }

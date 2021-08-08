@@ -1,5 +1,5 @@
 body {
-  background-color: grey;
+  background-color: rgb(205, 217, 228);
 }
 
 .App {
@@ -16,7 +16,7 @@ h1 {
 
 h3 {
   text-align: center;
-  color: red;
+  color: rgb(150, 60, 25);
 }
  
 form {
