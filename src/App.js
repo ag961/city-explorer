@@ -6,10 +6,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import Container from 'react-bootstrap/Container';
-import CardColumns from 'react-bootstrap/CardColumns';
 import Weather from './Weather';
 import Movies from './Movies';
-
 
 class App extends React.Component {
 
@@ -41,13 +39,13 @@ class App extends React.Component {
     e.preventDefault();
     try {
       let cityResults = await axios.get(`https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.city}&format=json`);
-      // console.log(cityResults);
       this.setState({
         lat: cityResults.data[0].lat,
         lon: cityResults.data[0].lon,
         name: cityResults.data[0].display_name,
+        map: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${cityResults.data[0].lat},${cityResults.data[0].lon}&zoom=12`,
         renderLatLon: true,
-        displayError: false,        
+        displayError: false,
       })
       this.getMovieInfo();
     } catch (error) {
@@ -55,7 +53,7 @@ class App extends React.Component {
         renderLatLon: false,
         displayError: true,
         displayWeather: false,
-        displayMovies: false,        
+        displayMovies: false,
         errorMessage: `Error: ${error.response.status}, ${error.response.data.error}`
       })
     }
@@ -103,24 +101,6 @@ class App extends React.Component {
 
   render() {
 
-    let weatherArrToRender = this.state.weatherData.map((weatherByDate, index) => (
-      <Weather
-        key={index}
-        description={weatherByDate.description}
-        date={weatherByDate.date}
-      />)
-    )
-
-    let movieArrToRender = this.state.movieData.map((movie, index) => (
-      <Movies
-        key={index}
-        title={movie.title}
-        image_url={movie.image_url}
-        overview={movie.overview}
-        releasedOn={movie.releasedOn}
-      />
-    ))
-
     return (
       <>
         <h1>City Explorer</h1>
@@ -138,23 +118,17 @@ class App extends React.Component {
             <ListGroup.Item as="li">Latitude: {this.state.lat}; Longitute: {this.state.lon}</ListGroup.Item>
             {this.state.displayWeather ?
               <ListGroup.Item as="li">Weather Forecast by Date
-                <CardColumns>
-                  {weatherArrToRender}
-                </CardColumns>
+                <Weather
+                  weatherData={this.state.weatherData}
+                />
               </ListGroup.Item> : ''}
             {this.state.displayWeatherError ? <h3>{this.state.weatherErrMessage}</h3> : ''}
-            <ListGroup.Item as="li"><Image alt='city' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12`} rounded /></ListGroup.Item>
+            <ListGroup.Item as="li">
+              <Image alt='city' src={this.state.map} rounded />
+            </ListGroup.Item>
           </ListGroup> : ''}
         {this.state.displayError ? <h3>{this.state.errorMessage}</h3> : ''}
-        {this.state.displayMovies ?
-          <Container>
-          {movieArrToRender.length > 0 ? 
-            <CardColumns>
-              {movieArrToRender}
-            </CardColumns>
-          : <h3>No movies were found matching your search input</h3>}
-          </Container> : ''
-        }
+        {this.state.displayMovies ? <Movies movieData={this.state.movieData} /> : ''}
         {this.state.displayMovieError ? <h3>{this.state.movieErrMessage}</h3> : ''}
       </>
     )
