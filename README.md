@@ -1,8 +1,8 @@
-# City Explorer App (Lab 09)
+# City Explorer App (Lab 10)
 
 **Deployed URL**: https://city-explorer-ayrat.netlify.app/
 **Author**: Ayrat Gimranov
-**Version**: 1.0.4 (increment the patch/fix version number if you make more commits past your first submission)
+**Version**: 1.0.5
 
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
@@ -30,43 +30,29 @@ In this lab we modularize back-end and front-end, refactoring our codebase.
 - Libraries - React, React-bootstrap, Axios,
 - Tools - GitHub, Netlify, Heroku, Trello, Creatly  
 
-![UML](./img/lab08-uml.png)
+![UML](./img/lab10-uml.jpg)
 
 ## Change Log
+
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
-8/8/2021 3.30 am - Feature 1: Modularized back-end codebase.
-
-8/8/2021 4.45 am - Feature 2: Componentized components of front-end.
-
-
+8/12/2021 3.30 am - Feature 1: Added cache to server
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
-Classmates: Quentin, Willem, Clarissa, Alex
-Staff: Ryan Gallaway, JP
+Classmates: Quentin, Willem, Clarissa, Alex, Jamison
+Staff: Ryan Gallaway, JP, TA's
 
 ---------------
 
-Name of feature 1. Refactor: Modularize the back-end codebase.
+Name of feature 1. Performance: As a user, I want the application to work with recent results, so that I can see info without the app doing unnecessary API calls.
 
-Estimate of time needed to complete: 1 hrs
+Estimate of time needed to complete: 2 hrs
 
-Start time: 2.45 pm
+Start time: 10 pm
 
-Finish time: 3.30 am
+Finish time: 7 am
 
-Actual time needed to complete: 45 mins
+Actual time needed to complete: 9 hrs (including breaks and lecture)
 
--------
-
-Name of feature 2. Refactor: Componentize the front-end codebase.
-
-Estimate of time needed to complete: 4 hrs
-
-Start time: 3.30 am
-
-Finish time: 4.45 am
-
-Actual time needed to complete: 1.15 min
