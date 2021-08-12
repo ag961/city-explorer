@@ -72,29 +72,27 @@ class App extends React.Component {
       this.setState({
         displayWeather: false,
         displayWeatherError: true,
-        weatherErrMessage: `Error: ${error.response.status}, ${error.response.data}`,
+        weatherErrMessage: `${error}`,
       })
-      console.log(error.response);
+
     }
   }
 
   getMovieInfo = async (e) => {
     try {
       let movieResults = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/movies?searchQuery=${this.state.city}`);
-      console.log(movieResults);
+      // console.log(movieResults);
       this.setState({
         movieData: movieResults.data,
         displayMovies: true,
         displayMovieError: false,
       });
 
-      console.log(this.state.movieResults);
     } catch (error) {
-      console.log(error);
       this.setState({
         displayMovies: false,
         displayMovieError: true,
-        movieErrMessage: `${error}`
+        movieErrMessage: `Error: ${error.response.status}, ${error.response.data.errors}`,
       })
     }
   }
